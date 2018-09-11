@@ -10,6 +10,7 @@ Welcome to Wulet's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   getbalance
 
 
 Indices and tables

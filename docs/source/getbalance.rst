@@ -15,8 +15,9 @@ Welcome to Wulet's documentation!
 Indices and tables
 ==================
 
-.. highlight:: bash
-    curl --request POST --url http://jungle.cryptolions.io:18888/v1/chain/get_table_rows -d '{"code": "mywishte1111", "scope": "mywishio", "table": "accounts", "json": true}'
+.. code-block:: bash
+
+   curl --request POST --url http://jungle.cryptolions.io:18888/v1/chain/get_table_rows -d '{"code": "mywishte1111", "scope": "mywishio", "table": "accounts", "json": true}'
 
 * :ref:`genindex`
 * :ref:`modindex`
