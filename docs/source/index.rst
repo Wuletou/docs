@@ -12,12 +12,3 @@ Welcome to Wulet's documentation!
 
    token
    exchange
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`getbalance`
-* :ref:`modindex`
-* :ref:`search`
