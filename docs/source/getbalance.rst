@@ -1,23 +1,30 @@
-.. Wulet documentation master file, created by
-   sphinx-quickstart on Mon Sep 10 13:59:32 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Wulet's documentation!
-=================================
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
-
-Indices and tables
-==================
+Token
+=====
+Tables
+------
+Get balance
+___________
 
 .. code-block:: bash
 
-    curl --request POST --url http://jungle.cryptolions.io:18888/v1/chain/get_table_rows -d '{"code": "mywishte1111", "scope": "mywishio", "table": "accounts", "json": true}'
+    curl --request POST \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --data '{"code": "TOKEN_ACCOUNT", "scope": "USER_ACCOUNT", "table": "accounts", "json": true}'
+
+Where:
+ * ``TOKEN_ACCOUNT`` — token account
+ * ``USER_ACCOUNT`` — user whose balance should be received
+
+You will get response like:
+.. code-block:: json
+
+    {
+        "rows": [{
+            "balance": "100.000000 WU",
+            "blocked": 20000000
+        }],
+        "more": false
+    }
 
 * :ref:`genindex`
 * :ref:`modindex`
