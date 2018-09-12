@@ -21,7 +21,7 @@ You will get response like:
 
     {
         "rows": [{
-            "balance": "100.000000 WU",
+            "balance": "100.000000 TEST",
             "blocked": 20000000
         }],
         "more": false
@@ -30,7 +30,7 @@ You will get response like:
 * ``balance`` field contains tokens that user have with symbol and precision
 * ``blocked`` field contains blocked tokens without symbol and precision
 
-To get available tokens that user can spend, ``blocked`` should be subtracted from ``balance``. In the example above available user balance is 80.000000 WU.
+To get available tokens that user can spend, ``blocked`` should be subtracted from ``balance``. In the example above available user balance is 80.000000 TEST.
 
 * :ref:`genindex`
 * :ref:`modindex`
