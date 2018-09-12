@@ -113,5 +113,161 @@ You will get response like:
       "more": false
     }
 
+Actions
+-------
+Add trade
+_________
 
+To add new trade to exchange you need to push action:
 
+.. code-block:: json
+
+    {
+      "code": "EXCH_ACCOUNT",
+      "action": "createx",
+      "args": {
+        "creator": "YOUR_ACC",
+        "base_deposit": {
+          "quantity": "BASE_QUANT",
+          "contract": "BASE_ACC"
+        },
+        "quote_deposit": {
+          "quantity": "QUOTE_QUANT",
+          "contract": "QUOTE_ACC"
+        }
+      }
+    }
+
+where:
+ * ``EXCH_ACCOUNT`` — exchange account,
+ * ``YOUR_ACC`` — your account,
+ * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
+ * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
+ * ``QUOTE_QUANT`` — quote tokens asset (ex. ``50.3000 AIR``),
+ * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+
+Accept specified trade
+______________________
+
+To accept specified trade you need to push action:
+
+.. code-block:: json
+
+    {
+      "code": "EXCH_ACCOUNT",
+      "action": "spec.trade",
+      "args": {
+        "id": ID,
+        "seller": "YOUR_ACC",
+        "receive": {
+          "quantity": "BASE_QUANT",
+          "contract": "BASE_ACC"
+        },
+        "sell": {
+          "quantity": "QUOTE_QUANT",
+          "contract": "QUOTE_ACC"
+        }
+      }
+    }
+
+where:
+ * ``EXCH_ACCOUNT`` — exchange account,
+ * ``ID`` — id of trade,
+ * ``YOUR_ACC`` — your account,
+ * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
+ * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
+ * ``QUOTE_QUANT`` — quote tokens asset (ex. ``50.3000 AIR``),
+ * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+
+Market order trade
+__________________
+
+To get specified amount of tokens (market order) you need to push action:
+
+.. code-block:: json
+
+    {
+      "code": "EXCH_ACCOUNT",
+      "action": "market.trade",
+      "args": {
+        "seller": "YOUR_ACC",
+        "receive": {
+          "quantity": "BASE_QUANT",
+          "contract": "BASE_ACC"
+        },
+        "sell_symbol": {
+          "sym": "QUOTE_SYM",
+          "contract": "QUOTE_ACC"
+        }
+      }
+    }
+
+where:
+ * ``EXCH_ACCOUNT`` — exchange account,
+ * ``YOUR_ACC`` — your account,
+ * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
+ * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
+ * ``QUOTE_SYM`` — symbol of quote token with precision and name (ex. ``4,AIR``),
+ * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+
+Limit order trade
+_________________
+
+To get tokens for specified amount of another tokens (limit order) you need to push action:
+
+.. code-block:: json
+
+    {
+      "code": "EXCH_ACCOUNT",
+      "action": "limit.trade",
+      "args": {
+        "seller": "YOUR_ACC",
+        "receive_symbol": {
+          "sym": "BASE_SYM",
+          "contract": "BASE_ACC"
+        },
+        "sell": {
+          "quantity": "QUOTE_QUANT",
+          "contract": "QUOTE_ACC"
+        }
+      }
+    }
+
+where:
+ * ``EXCH_ACCOUNT`` — exchange account,
+ * ``YOUR_ACC`` — your account,
+ * ``BASE_SYM`` — symbol of base token with precision and name (ex. ``4,WU``),
+ * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
+ * ``BASE_QUANT`` — quote tokens asset (ex. ``10.5402 AIR``),
+ * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+
+Cancel trade
+____________
+
+To cancel your trade you need to push action:
+
+.. code-block:: json
+
+    {
+      "code": "EXCH_ACCOUNT",
+      "action": "cancelx",
+      "args": {
+        "id": ID,
+        "base_symbol": {
+          "sym": "BASE_SYM",
+          "contract": "BASE_ACC"
+        },
+        "quote_symbol": {
+          "sym": "QUOTE_SYM",
+          "contract": "QUOTE_ACC"
+        }
+      }
+    }
+
+where:
+ * ``EXCH_ACCOUNT`` — exchange account,
+ * ``ID`` — id of the canceled trade,
+ * ``BASE_SYM`` — symbol of base token with precision and name (ex. ``4,WU``),
+ * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
+ * ``QUOTE_SYM`` — symbol of quote token with precision and name (ex. ``4,AIR``),
+ * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``).
