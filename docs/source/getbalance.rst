@@ -27,6 +27,11 @@ You will get response like:
         "more": false
     }
 
+``balance`` field contains tokens that user have with symbol and precision
+``blocked`` field contains blocked tokens without symbol and precision
+
+To get available tokens that user can spend, ``blocked`` should be subtract from ``balance``. In the example above available user balance is 80.000000 WU.
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
