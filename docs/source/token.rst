@@ -24,10 +24,10 @@ You will get response like:
           "balance": "100.000000 TEST",
           "blocked": 20000000
         },{
-          "balance": "10.0000 FOO"
+          "balance": "10.0000 FOO",
           "blocked": 25000
         },{
-          "balance": "1.00 BAR"
+          "balance": "1.00 BAR",
           "blocked": 75
         }
       ],
