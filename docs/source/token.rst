@@ -18,6 +18,7 @@ Where:
 You will get response like:
 
 .. code-block:: json
+
     {
       "rows": [{
           "balance": "100.000000 TEST",
