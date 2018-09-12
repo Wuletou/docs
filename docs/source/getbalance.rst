@@ -16,6 +16,7 @@ Where:
  * ``USER_ACCOUNT`` — user whose balance should be received
 
 You will get response like:
+
 .. code-block:: json
 
     {
