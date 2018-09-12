@@ -12,8 +12,8 @@ ___________
       --data '{"code": "TOKEN_ACCOUNT", "scope": "USER_ACCOUNT", "table": "accounts", "json": true}'
 
 Where:
- * ``TOKEN_ACCOUNT`` — token account
- * ``USER_ACCOUNT`` — user whose balance should be received
+    * ``TOKEN_ACCOUNT`` — token account
+    * ``USER_ACCOUNT`` — user whose balance should be received
 
 You will get response like:
 
@@ -27,10 +27,10 @@ You will get response like:
         "more": false
     }
 
-``balance`` field contains tokens that user have with symbol and precision
-``blocked`` field contains blocked tokens without symbol and precision
+* ``balance`` field contains tokens that user have with symbol and precision
+* ``blocked`` field contains blocked tokens without symbol and precision
 
-To get available tokens that user can spend, ``blocked`` should be subtract from ``balance``. In the example above available user balance is 80.000000 WU.
+To get available tokens that user can spend, ``blocked`` should be subtracted from ``balance``. In the example above available user balance is 80.000000 WU.
 
 * :ref:`genindex`
 * :ref:`modindex`
