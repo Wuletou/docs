@@ -11,6 +11,7 @@ Welcome to Wulet's documentation!
    :caption: Contents:
 
    getbalance
+   exchange
 
 
 Indices and tables
