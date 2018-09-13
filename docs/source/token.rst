@@ -38,3 +38,44 @@ You will get response like:
 * ``blocked`` field contains blocked tokens without symbol and precision
 
 To get available tokens that user can spend, ``blocked`` should be subtracted from ``balance``. In the example above available user balances are ``80.000000 TEST``, ``7.5000 FOO`` and ``0.25 BAR``.
+
+Get token info
+______________
+tcleos get table mywishte1111 QWEASG stat
+
+.. code-block:: bash
+
+    curl --request POST \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_SYMBOL", "table": "accounts", "json": true}'
+
+Where:
+    * ``TOKEN_ACCOUNT`` — token account
+    * ``TOKEN_SYMBOL`` — symbol for which to get info
+
+You will get response like:
+
+.. code-block:: json
+
+    {
+      "rows": [{
+          "supply": "30000.00 TEST",
+          "max_supply": "100000.00 TEST",
+          "issuer": "testowner",
+          "info": {
+            "name": "Symbol for API demonstration",
+            "url": "https://wulet.readthedocs.io/en/develop/",
+            "logo_url": "https://www.lenta.com/public/2015/img/icons/lenta_logo.png"
+          }
+        }
+      ],
+      "more": false
+    }
+
+* ``supply`` field contains tokens that are already distributed
+* ``max_supply`` field contains maximum number of distributed tokens
+* ``issuer`` field contains token owner that can distribute undistributed tokens
+* ``info`` field contains token information
+    * ``name`` is a full token name
+    * ``url`` is a link to the store that distributes this token
+    * ``logo_url`` is a link to the token logo
