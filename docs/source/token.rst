@@ -41,7 +41,6 @@ To get available tokens that user can spend, ``blocked`` should be subtracted fr
 
 Get token info
 ______________
-tcleos get table mywishte1111 QWEASG stat
 
 .. code-block:: bash
 
@@ -76,6 +75,6 @@ You will get response like:
 * ``max_supply`` field contains maximum number of distributed tokens
 * ``issuer`` field contains token owner that can distribute undistributed tokens
 * ``info`` field contains token information
-    * ``name`` is a full token name
-    * ``url`` is a link to the store that distributes this token
-    * ``logo_url`` is a link to the token logo
+  * ``name`` is a full token name
+  * ``url`` is a link to the store that distributes this token
+  * ``logo_url`` is a link to the token logo
