@@ -72,7 +72,7 @@ You will get response like:
     }
 
 * ``supply`` field contains tokens that are already distributed
-* ``max_supply`` field contains maximum number of distributed tokens
+* ``max_supply`` field contains maximum number of tokens that can be distributed
 * ``issuer`` field contains token owner that can distribute undistributed tokens
 * ``info`` field contains token information
 
