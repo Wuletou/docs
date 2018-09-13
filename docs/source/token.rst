@@ -79,3 +79,39 @@ You will get response like:
     * ``name`` is a full token name
     * ``url`` is a link to the store that distributes this token
     * ``logo_url`` is a link to the token logo
+
+Get tokens list
+_______________________
+
+.. code-block:: bash
+
+    curl --request POST \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_ACCOUNT", "table": "symbols", "json": true}'
+
+Where:
+    * ``TOKEN_ACCOUNT`` — token account
+
+You will get response like:
+
+.. code-block:: json
+
+    {
+      "rows": [{
+          "symbol": 22532
+        },{
+          "symbol": 23044
+        },{
+          "symbol": 17156
+        },{
+          "symbol": 22020
+        },{
+          "symbol": "18935034737613316"
+        }
+      ],
+      "more": false
+    }
+
+``symbol`` is a decimal representation of token symbol. For example, let's decode the last symbol.
+
+Decimal ``18935034737613316`` in hex will be ``43455053585A04``. The last byte contains precision of a symbol. In our case it is 4. Other bytes contains reversed symbol name. In our case - ``43455053585A`` should be decoded as ``CEPSXZ``. After reverse it becomes ``ZXSPEC``. So now we have symbol name ``ZXSPEC`` and precision ``4``.
