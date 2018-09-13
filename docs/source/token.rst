@@ -114,4 +114,4 @@ You will get response like:
 
 ``symbol`` is a decimal representation of token symbol. For example, let's decode the last symbol.
 
-Decimal ``18935034737613316`` in hex will be ``43455053585A04``. The last byte contains precision of a symbol. In our case it is 4. Other bytes contains reversed symbol name. In our case - ``43455053585A`` should be decoded as ``CEPSXZ``. After reverse it becomes ``ZXSPEC``. So now we have symbol name ``ZXSPEC`` and precision ``4``.
+Decimal ``18935034737613316`` in hex will be ``43455053585A04``. The last byte contains precision of a symbol. In our case it is ``4``. Other bytes contains reversed symbol name. In our case - ``43455053585A`` should be decoded as ``CEPSXZ``. After reverse it becomes ``ZXSPEC``. So now we have symbol name ``ZXSPEC`` and precision ``4``.
