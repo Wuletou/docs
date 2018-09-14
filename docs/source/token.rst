@@ -8,7 +8,7 @@ ___________
 .. code-block:: bash
 
     curl --request POST \
-      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "USER_ACCOUNT", "table": "accounts", "json": true}'
 
 Where:

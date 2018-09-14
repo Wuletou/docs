@@ -4,17 +4,31 @@ Tables
 ------
 Pairs
 _____
-To get a list of exchangeable pairs on the exchange, you need to:
+To get a list of exchangeable pairs on the exchange, you need to get table:
 
 .. code-block:: bash
 
-    curl --request POST \
-      --url https://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
-      --data '{"code":"EXCH_ACCOUNT","scope":"EXCH_ACCOUNT","limit":LIMIT,"table":"pairs","json":true}'
+    POST /v1/chain/get_table_rows HTTP/1.0
+    Host: api-wulet.unblocking.io
+
+    {
+      "code": "exch.account",
+      "scope": "exch.account",
+      "table": "pairs",
+      "lower_bound": "",
+      "upper_bound": "",
+      "limit": 10,
+      "json": true
+    }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``LIMIT`` — max rows count.
+ * ``code`` — account of exchange,
+ * ``scope`` — should be same as exchange account,
+ * ``table`` — name of requested table, should be ``pairs``,
+ * ``lower_bound`` — JSON representation of lower bound value of key, defaults to first,
+ * ``upper_bound`` — JSON representation of upper bound value value of key, defaults to last,
+ * ``limit`` — the maximum number of rows to return,
+ * ``json`` — returns JSON if ``true`` and binary if ``false``,
 
 You will get response like:
 
@@ -24,30 +38,23 @@ You will get response like:
       "rows": [
         {
           "id": 0,
-          "base_symbol": {
-            "sym": "4,WU",
-            "contract": "wu.deployer"
-          },
-          "quote_symbol": {
-            "sym": "4,B",
-            "contract": "wu.deployer"
-          }
+          "base_symbol": "4,WU",
+          "quote_symbol": "4,A"
         },
         {
           "id": 1,
-          "base_symbol": {
-            "sym": "4,B",
-            "contract": "wu.deployer"
-          },
-          "quote_symbol": {
-            "sym": "4,WU",
-            "contract": "wu.deployer"
-          }
+          "base_symbol": "4,A",
+          "quote_symbol": "4,WU"
         }
       ],
       "more": false
     }
 
+where:
+ * ``rows`` — an array of pairs exchanged on the exchange,
+ * ``id`` — id of pair,
+ * ``base_symbol`` — precision and symbol name of base currency,
+ * ``quote_symbol`` — precision and symbol name of quote currency.
 
 Markets
 _______
@@ -55,14 +62,32 @@ To get a list of offers on the exchange, filtered by pair, you need to:
 
 .. code-block:: bash
 
-    curl --request POST \
-      --url https://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
-      --data '{"code":"EXCH_ACCOUNT","scope":"PAIR_ID","limit":LIMIT",table":"markets","index_position":"2","key_type":"float64","json":true}'
+    POST /v1/chain/get_table_rows HTTP/1.0
+    Host: api-wulet.unblocking.io
+
+    {
+      "code": "exch.account",
+      "scope": 123,
+      "table": "markets",
+      "index_position": "2",
+      "key_type": "float64",
+      "lower_bound": "",
+      "upper_bound": "",
+      "limit": 10,
+      "json": true
+    }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``PAIR_ID`` — id of exchangeble pair,
- * ``LIMIT`` — max rows count.
+ * ``code`` — account of exchange,
+ * ``scope`` — id of exchanged pair from Pairs table,
+ * ``table`` — name of requested table, should be ``markets``,
+ * ``index_position`` — index number to sort rows: ``1`` to sort by id, ``2`` to sort by price,
+ * ``key_type`` — key type of index: ``i64`` for ``1`` index, ``float64`` for ``2`` index,
+ * ``lower_bound`` — JSON representation of lower bound value of key, defaults to first,
+ * ``upper_bound`` — JSON representation of upper bound value value of key, defaults to last,
+ * ``limit`` — the maximum number of rows to return,
+ * ``json`` — returns JSON if ``true`` and binary if ``false``,
+
 
 You will get response like:
 
@@ -73,45 +98,35 @@ You will get response like:
         {
           "id": 0,
           "manager": "buyer1",
-          "base": {
-            "quantity": "2.0000 WU",
-            "contract": "wu.deployer"
-          },
-          "quote": {
-            "quantity": "10.0000 B",
-            "contract": "wu.deployer"
-          },
-          "price": "0.20000000000000001"
+          "base": "2.0000 WU",
+          "quote": "10.0000 A",
+          "price": "0.20000000000000000"
         },
         {
           "id": 1,
           "manager": "buyer1",
-          "base": {
-            "quantity": "3.0000 WU",
-            "contract": "wu.deployer"
-          },
-          "quote": {
-            "quantity": "19.0000 B",
-            "contract": "wu.deployer"
-          },
+          "base": "3.0000 WU",
+          "quote": "19.0000 A",
           "price": "0.15789473684210525"
         },
         {
           "id": 2,
           "manager": "buyer1",
-          "base": {
-            "quantity": "1.0000 WU",
-            "contract": "wu.deployer"
-          },
-          "quote": {
-            "quantity": "8.0000 B",
-            "contract": "wu.deployer"
-          },
+          "base": "1.0000 WU",
+          "quote": "8.0000 A",
           "price": "0.12500000000000000"
         }
       ],
       "more": false
     }
+
+where:
+ * ``rows`` — an array of trades on the exchange,
+ * ``id`` — id of trade,
+ * ``manager`` — account name of user who created the trade offer,
+ * ``base`` — base currency,
+ * ``quote`` — quote currency,
+ * ``price`` — price of the base currency against the quote,
 
 Actions
 -------
@@ -123,28 +138,21 @@ To add new trade to exchange you need to push action:
 .. code-block:: json
 
     {
-      "code": "EXCH_ACCOUNT",
+      "code": "exch.account",
       "action": "createx",
       "args": {
-        "creator": "YOUR_ACC",
-        "base_deposit": {
-          "quantity": "BASE_QUANT",
-          "contract": "BASE_ACC"
-        },
-        "quote_deposit": {
-          "quantity": "QUOTE_QUANT",
-          "contract": "QUOTE_ACC"
-        }
+        "creator": "buyeraccount",
+        "base_deposit": "10.1000 WU",
+        "quote_deposit": "50.3000 AIR"
       }
     }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``YOUR_ACC`` — your account,
- * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
- * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
- * ``QUOTE_QUANT`` — quote tokens asset (ex. ``50.3000 AIR``),
- * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+ * ``code`` — account of exchange contract,
+ * ``action`` — performed action. should be ``createx``,
+ * ``creator`` — your account,
+ * ``base_deposit`` — base currency in special format (as in example),
+ * ``quote_deposit`` — quote currency in same format,
 
 Accept specified trade
 ______________________
@@ -154,30 +162,23 @@ To accept specified trade you need to push action:
 .. code-block:: json
 
     {
-      "code": "EXCH_ACCOUNT",
+      "code": "exch.account",
       "action": "spec.trade",
       "args": {
-        "id": ID,
-        "seller": "YOUR_ACC",
-        "receive": {
-          "quantity": "BASE_QUANT",
-          "contract": "BASE_ACC"
-        },
-        "sell": {
-          "quantity": "QUOTE_QUANT",
-          "contract": "QUOTE_ACC"
-        }
+        "id": 123,
+        "seller": "buyeraccount",
+        "receive": "10.1000 WU",
+        "sell": "50.3000 AIR"
       }
     }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``ID`` — id of trade,
- * ``YOUR_ACC`` — your account,
- * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
- * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
- * ``QUOTE_QUANT`` — quote tokens asset (ex. ``50.3000 AIR``),
- * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+ * ``code`` — account of exchange contract,
+ * ``action`` — performed action. should be ``spec.trade``,
+ * ``id`` — id of trade,
+ * ``seller`` — your account,
+ * ``receive`` — base currency in special format (as in example),
+ * ``sell`` — quote currency in same format.
 
 Market order trade
 __________________
@@ -187,28 +188,21 @@ To get specified amount of tokens (market order) you need to push action:
 .. code-block:: json
 
     {
-      "code": "EXCH_ACCOUNT",
+      "code": "exch.account",
       "action": "market.trade",
       "args": {
-        "seller": "YOUR_ACC",
-        "receive": {
-          "quantity": "BASE_QUANT",
-          "contract": "BASE_ACC"
-        },
-        "sell_symbol": {
-          "sym": "QUOTE_SYM",
-          "contract": "QUOTE_ACC"
-        }
+        "seller": "buyeraccount",
+        "receive": "10.1000 WU",
+        "sell_symbol": "4,AIR"
       }
     }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``YOUR_ACC`` — your account,
- * ``BASE_QUANT`` — base tokens asset (ex. ``10.5402 WU``),
- * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
- * ``QUOTE_SYM`` — symbol of quote token with precision and name (ex. ``4,AIR``),
- * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+ * ``code`` — account of exchange contract,
+ * ``action`` — performed action. should be ``market.trade``,
+ * ``seller`` — your account,
+ * ``receive`` — base currency you want to receive in special format (as in example),
+ * ``sell_symbol`` — precision and symbol name of quote currency in special format (as in example).
 
 Limit order trade
 _________________
@@ -218,28 +212,21 @@ To get tokens for specified amount of another tokens (limit order) you need to p
 .. code-block:: json
 
     {
-      "code": "EXCH_ACCOUNT",
+      "code": "exch.account",
       "action": "limit.trade",
       "args": {
-        "seller": "YOUR_ACC",
-        "receive_symbol": {
-          "sym": "BASE_SYM",
-          "contract": "BASE_ACC"
-        },
-        "sell": {
-          "quantity": "QUOTE_QUANT",
-          "contract": "QUOTE_ACC"
-        }
+        "seller": "buyeraccount",
+        "receive_symbol": "4,WU",
+        "sell": "50.3000 AIR"
       }
     }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``YOUR_ACC`` — your account,
- * ``BASE_SYM`` — symbol of base token with precision and name (ex. ``4,WU``),
- * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
- * ``BASE_QUANT`` — quote tokens asset (ex. ``10.5402 AIR``),
- * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``),
+ * ``code`` — account of exchange contract,
+ * ``action`` — performed action. should be ``limit.trade``,
+ * ``seller`` — your account,
+ * ``receive_symbol`` — precision and symbol name of base currency in special format (as in example),
+ * ``sell`` — quote currency you want to receive in special format (as in example).
 
 Cancel trade
 ____________
@@ -249,25 +236,18 @@ To cancel your trade you need to push action:
 .. code-block:: json
 
     {
-      "code": "EXCH_ACCOUNT",
+      "code": "exch.account",
       "action": "cancelx",
       "args": {
-        "id": ID,
-        "base_symbol": {
-          "sym": "BASE_SYM",
-          "contract": "BASE_ACC"
-        },
-        "quote_symbol": {
-          "sym": "QUOTE_SYM",
-          "contract": "QUOTE_ACC"
-        }
+        "id": 123,
+        "base_symbol": "4,WU",
+        "quote_symbol": "4,AIR"
       }
     }
 
 where:
- * ``EXCH_ACCOUNT`` — exchange account,
- * ``ID`` — id of the canceled trade,
- * ``BASE_SYM`` — symbol of base token with precision and name (ex. ``4,WU``),
- * ``BASE_ACC`` — account of contract of base token (ex. ``wu.deployer``),
- * ``QUOTE_SYM`` — symbol of quote token with precision and name (ex. ``4,AIR``),
- * ``QUOTE_ACC`` — account of contract of quote token (ex. ``lt.deployer``).
+ * ``code`` — account of exchange contract,
+ * ``action`` — performed action. should be ``cancelx``,
+ * ``id`` — id of the canceled trade,
+ * ``base_symbol`` — precision and symbol name of base currency in special format (as in example),
+ * ``quote_symbol`` — precision and symbol name of quote currency in special format (as in example).
