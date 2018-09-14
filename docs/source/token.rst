@@ -45,7 +45,7 @@ ______________
 .. code-block:: bash
 
     curl --request POST \
-      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_SYMBOL", "table": "accounts", "json": true}'
 
 Where:
@@ -81,12 +81,12 @@ You will get response like:
     * ``logo_url`` is a link to the token logo
 
 Get tokens list
-_______________________
+_______________
 
 .. code-block:: bash
 
     curl --request POST \
-      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
+      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_ACCOUNT", "table": "symbols", "json": true}'
 
 Where:
