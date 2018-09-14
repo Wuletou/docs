@@ -8,7 +8,7 @@ ___________
 .. code-block:: bash
 
     curl --request POST \
-      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "USER_ACCOUNT", "table": "accounts", "json": true}'
 
 Where:
@@ -45,7 +45,7 @@ ______________
 .. code-block:: bash
 
     curl --request POST \
-      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_SYMBOL", "table": "accounts", "json": true}'
 
 Where:
@@ -81,12 +81,12 @@ You will get response like:
     * ``logo_url`` is a link to the token logo
 
 Get tokens list
-_______________
+_______________________
 
 .. code-block:: bash
 
     curl --request POST \
-      --url https://api-wulet.unblocking.io/v1/chain/get_table_rows \
+      --url http://api-wullet.unblocking.io:18888/v1/chain/get_table_rows \
       --data '{"code": "TOKEN_ACCOUNT", "scope": "TOKEN_ACCOUNT", "table": "symbols", "json": true}'
 
 Where:
@@ -98,20 +98,14 @@ You will get response like:
 
     {
       "rows": [{
-          "symbol": 22532
+          "symbol": "6,TEST"
         },{
-          "symbol": 23044
+          "symbol": "4,FOO"
         },{
-          "symbol": 17156
-        },{
-          "symbol": 22020
-        },{
-          "symbol": "18935034737613316"
+          "symbol": "2,BAR"
         }
       ],
       "more": false
     }
 
-``symbol`` is a decimal representation of token symbol. For example, let's decode the last symbol.
-
-Decimal ``18935034737613316`` in hex will be ``43455053585A04``. The last byte contains precision of a symbol. In our case it is ``4``. Other bytes contains reversed symbol name. In our case - ``43455053585A`` should be decoded as ``CEPSXZ``. After reverse it becomes ``ZXSPEC``. So now we have symbol name ``ZXSPEC`` and precision ``4``.
+``symbol`` field contains token name and its precision
