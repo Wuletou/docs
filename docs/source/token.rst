@@ -109,3 +109,24 @@ You will get response like:
     }
 
 ``symbol`` field contains token name and its precision
+
+Actions
+-------
+Transfer
+________
+.. code-block:: json
+
+    {
+      "code": "token.account",
+      "action": "transfer",
+      "args": {
+        "from": "alice",
+        "to": "bob",
+        "quantity": "100.0000 WU"
+      }
+    }
+
+``code`` - account where token code is deployed
+``from`` - from account
+``to`` - to account
+``quantity`` - how many tokens to transfer
