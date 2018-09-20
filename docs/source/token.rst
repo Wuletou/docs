@@ -117,11 +117,11 @@ ________
 .. code-block:: json
 
     {
-      "code": "token.account",
+      "code": "TOKEN_ACCOUNT",
       "action": "transfer",
       "args": {
-        "from": "alice",
-        "to": "bob",
+        "from": "FROM_ACC",
+        "to": "TO_ACC",
         "quantity": "100.0000 WU"
       }
     }
