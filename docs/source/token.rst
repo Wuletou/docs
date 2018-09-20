@@ -126,7 +126,8 @@ ________
       }
     }
 
-``code`` - account where token code is deployed
-``from`` - from account
-``to`` - to account
-``quantity`` - how many tokens to transfer
+Where:
+    * ``code`` - account where token code is deployed
+    * ``from`` - from account
+    * ``to`` - to account
+    * ``quantity`` - how many tokens to transfer
