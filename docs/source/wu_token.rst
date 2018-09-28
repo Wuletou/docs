@@ -1,4 +1,4 @@
-WU
+WU token
 =====
 Actions
 -------
