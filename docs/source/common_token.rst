@@ -1,4 +1,4 @@
-Token
+Common
 =====
 Tables
 ------
@@ -109,43 +109,3 @@ You will get response like:
     }
 
 ``symbol`` field contains token name and its precision
-
-Actions
--------
-Transfer
-________
-.. code-block:: json
-
-    {
-      "code": "TOKEN_ACCOUNT",
-      "action": "transfer",
-      "args": {
-        "from": "FROM_ACC",
-        "to": "TO_ACC",
-        "quantity": "100.0000 WU"
-      }
-    }
-
-Where:
-    * ``code`` - account where token code is deployed
-    * ``from`` - from account
-    * ``to`` - to account
-    * ``quantity`` - how many tokens to transfer
-
-Burn
-____
-.. code-block:: json
-
-    {
-      "code": "TOKEN_ACCOUNT",
-      "action": "transfer",
-      "args": {
-        "owner": "FROM_ACC",
-        "value": "100.0000 TKN"
-      }
-    }
-
-Where:
-    * ``code`` - account where loyalty token code is deployed
-    * ``owner`` - account who wants to burn tokens
-    * ``value`` - how many tokens to burn
