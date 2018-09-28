@@ -10,5 +10,7 @@ Welcome to Wulet's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   token
+   common_token
+   wu_token
+   loyalty_token
    exchange
