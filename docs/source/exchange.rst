@@ -167,8 +167,8 @@ To accept specified trade you need to push action:
       "args": {
         "id": 123,
         "seller": "buyeraccount",
-        "receive": "10.1000 WU",
-        "sell": "50.3000 AIR"
+        "sell": "50.3000 AIR",
+        "receive": "10.1000 WU"
       }
     }
 
@@ -177,8 +177,8 @@ where:
  * ``action`` — performed action. should be ``spec.trade``,
  * ``id`` — id of trade,
  * ``seller`` — your account,
- * ``receive`` — base currency in special format (as in example),
- * ``sell`` — quote currency in same format.
+ * ``sell`` — quote currency in same format,
+ * ``receive`` — base currency in special format (as in example).
 
 Market order trade
 __________________
