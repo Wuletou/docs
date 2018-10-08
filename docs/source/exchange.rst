@@ -192,8 +192,8 @@ To get specified amount of tokens (market order) you need to push action:
       "action": "market.trade",
       "args": {
         "seller": "buyeraccount",
-        "receive": "10.1000 WU",
-        "sell_symbol": "4,AIR"
+        "sell_symbol": "4,AIR",
+        "receive": "10.1000 WU"
       }
     }
 
@@ -201,8 +201,8 @@ where:
  * ``code`` — account of exchange contract,
  * ``action`` — performed action. should be ``market.trade``,
  * ``seller`` — your account,
- * ``receive`` — base currency you want to receive in special format (as in example),
- * ``sell_symbol`` — precision and symbol name of quote currency in special format (as in example).
+ * ``sell_symbol`` — precision and symbol name of quote currency in special format (as in example),
+ * ``receive`` — base currency you want to receive in special format (as in example).
 
 Limit order trade
 _________________
@@ -216,8 +216,8 @@ To get tokens for specified amount of another tokens (limit order) you need to p
       "action": "limit.trade",
       "args": {
         "seller": "buyeraccount",
-        "receive_symbol": "4,WU",
-        "sell": "50.3000 AIR"
+        "sell": "50.3000 AIR",
+        "receive_symbol": "4,WU"
       }
     }
 
@@ -225,8 +225,8 @@ where:
  * ``code`` — account of exchange contract,
  * ``action`` — performed action. should be ``limit.trade``,
  * ``seller`` — your account,
- * ``receive_symbol`` — precision and symbol name of base currency in special format (as in example),
- * ``sell`` — quote currency you want to receive in special format (as in example).
+ * ``sell`` — quote currency you want to receive in special format (as in example),
+ * ``receive_symbol`` — precision and symbol name of base currency in special format (as in example).
 
 Cancel trade
 ____________
