@@ -99,22 +99,22 @@ You will get response like:
           "id": 0,
           "manager": "buyer1",
           "base": "2.0000 WU",
-          "quote": "10.0000 A",
-          "price": "0.20000000000000000"
+          "quote_symbol": "4,A",
+          "price": "5.00000000000000000"
         },
         {
           "id": 1,
           "manager": "buyer1",
           "base": "3.0000 WU",
-          "quote": "19.0000 A",
-          "price": "0.15789473684210525"
+          "quote_symbol": "4,A",
+          "price": "6.33333333333333333"
         },
         {
           "id": 2,
           "manager": "buyer1",
           "base": "1.0000 WU",
-          "quote": "8.0000 A",
-          "price": "0.12500000000000000"
+          "quote_symbol": "4,A",
+          "price": "8.00000000000000000"
         }
       ],
       "more": false
@@ -125,7 +125,7 @@ where:
  * ``id`` — id of trade,
  * ``manager`` — account name of user who created the trade offer,
  * ``base`` — base currency,
- * ``quote`` — quote currency,
+ * ``quote_symbol`` — symbol of quote currency,
  * ``price`` — price of the base currency against the quote,
 
 Actions
@@ -167,7 +167,7 @@ To accept specified trade you need to push action:
       "args": {
         "id": 123,
         "seller": "buyeraccount",
-        "sell": "50.3000 AIR",
+        "sell_symbol": "4,AIR",
         "receive": "10.1000 WU"
       }
     }
@@ -177,7 +177,7 @@ where:
  * ``action`` — performed action. should be ``spec.trade``,
  * ``id`` — id of trade,
  * ``seller`` — your account,
- * ``sell`` — quote currency in same format,
+ * ``sell_symbol`` — precision and symbol name of quote currency in special format (as in example),
  * ``receive`` — base currency in special format (as in example).
 
 Market order trade
