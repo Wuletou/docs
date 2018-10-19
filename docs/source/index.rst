@@ -14,3 +14,4 @@ Welcome to Wulet's documentation!
    wu_token
    loyalty_token
    exchange
+   pushes
