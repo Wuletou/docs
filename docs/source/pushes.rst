@@ -5,7 +5,7 @@ _____________________
 
 .. code-block:: bash
 
-    POST /user-devices HTTP/1.0
+    POST /api/v1/user-devices HTTP/1.0
     Host: api-wulet.unblocking.io
 
     {
@@ -22,7 +22,7 @@ ________________________
 
 .. code-block:: bash
 
-    DELETE /user-devices/TOKEN?account=ACCOUNT HTTP/1.0
+    DELETE /api/v1/user-devices/TOKEN?account=ACCOUNT HTTP/1.0
     Host: api-wulet.unblocking.io
     X-Signature: SIGNATURE
 
